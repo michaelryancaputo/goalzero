@@ -1,5 +1,6 @@
 {
   "expo": {
+    "owner": "flashpunk",
     "name": "goalzero",
     "slug": "goalzero",
     "version": "1.0.0",
