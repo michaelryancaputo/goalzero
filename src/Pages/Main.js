@@ -20,7 +20,7 @@ export default () => {
     toggleUsb,
     toggleAc,
     toggleBacklight,
-  } = useGZState("192.168.1.21");
+  } = useGZState("192.168.1.8");
 
   if (isLoading) {
     return (
@@ -68,11 +68,6 @@ export default () => {
   } = data.data;
 
   const dataTable = [
-    // ["acPortStatus", acPortStatus],
-    // ["v12PortStatus", v12PortStatus],
-    // ["usbPortStatus", usbPortStatus],
-    // ["backlight", backlight],
-
     ["app_online", app_online],
     ["wattsIn", wattsIn],
     ["ampsIn", ampsIn],
