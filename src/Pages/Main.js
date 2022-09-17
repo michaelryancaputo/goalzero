@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import {
   AppBar,
   ListItem,
@@ -6,10 +6,9 @@ import {
   Switch,
 } from "@react-native-material/core";
 import useGZState from "../Hooks/useGZState";
+import HeaderToolbar from "../Components/HeaderToolbar";
 
-const reverseBool = (val) => {
-  return val === 0 ? 1 : 0;
-};
+const reverseBool = (val) => (val === 0 ? 1 : 0);
 
 export default () => {
   const {
@@ -20,23 +19,26 @@ export default () => {
     toggleUsb,
     toggleAc,
     toggleBacklight,
-  } = useGZState("192.168.1.8");
+  } = useGZState();
 
   if (isLoading) {
     return (
-      <SafeAreaView style={styles.scrollContainer}>
-        <AppBar title={`Goal Zero: ${thingName}`} />
+      <>
+        <AppBar title={`Goal Zero: Loading...`} trailing={HeaderToolbar} />
         <ActivityIndicator size="large" />
-      </SafeAreaView>
+      </>
     );
   }
 
   if (isError) {
     return (
-      <SafeAreaView style={styles.scrollContainer}>
-        <AppBar title={`Goal Zero: ${thingName}`} />
+      <>
+        <AppBar
+          title={`Goal Zero: There was a problem`}
+          trailing={HeaderToolbar}
+        />
         <Text>Error</Text>
-      </SafeAreaView>
+      </>
     );
   }
 
@@ -90,9 +92,9 @@ export default () => {
   ];
 
   return (
-    <SafeAreaView style={styles.scrollContainer}>
-      <AppBar title={`Goal Zero: ${thingName}`} />
-      <ScrollView style={styles.scrollView}>
+    <>
+      <AppBar title={`Goal Zero: ${thingName}`} trailing={HeaderToolbar} />
+      <ScrollView>
         <ListItem
           title="Backlight"
           trailing={
@@ -149,14 +151,6 @@ export default () => {
           />
         ))}
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollContainer: {
-    flex: 1,
-  },
-
-  scrollView: {},
-});
